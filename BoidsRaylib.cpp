@@ -28,10 +28,11 @@ int main()
 {
 	// Initialization
 	 //--------------------------------------------------------------------------------------
-	SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_BORDERLESS_WINDOWED_MODE);
+	SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
 	InitWindow(0, 0, "Boids");
 	const int screenWidth = GetScreenWidth();
-	const int screenHeight = GetScreenHeight() - 80;
+	const int screenHeight = GetScreenHeight() - 100;
+	SetWindowPosition(0, 40);
 	SetWindowSize(screenWidth, screenHeight);
 	SetTargetFPS(144);
 	rlImGuiSetup(true);

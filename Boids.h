@@ -7,8 +7,6 @@ struct BoidData
 {
 	Vector2 Center{ 0.f, 0.f };
 	float Angle = 0.f;
-	Vector2 Force{ 0.f, 0.f };
-	Vector2 Velocity{ 0.f, 0.f };
 };
 
 class BoidsSystem
