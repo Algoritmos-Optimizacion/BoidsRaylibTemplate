@@ -5,6 +5,7 @@
 #include "rlImGui/rlImGui.h"
 #include "imgui/imgui.h"
 #include "Boids.h"
+#include "optick.h"
 #include <iostream>
 
 constexpr float BoidLength = 20.f;
@@ -42,11 +43,14 @@ int main()
 
 	// Initialize boids
 	BoidsSystem* BoidSystem = BoidsSystem::GetSystem();
-	BoidSystem->InitializeBoids(50, screenWidth, screenHeight);
+	constexpr int NumBoids = 2500;
+	BoidSystem->InitializeBoids(NumBoids, screenWidth, screenHeight);
 
 	// Main game loop
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{
+		OPTICK_FRAME("MainThread");
+
 		// Update
 		//----------------------------------------------------------------------------------
 		// TODO: Update your variables here
@@ -60,6 +64,8 @@ int main()
 
 		// GUI
 		{
+			OPTICK_EVENT("GUI");
+
 			// start ImGui content
 			rlImGuiBegin();
 
@@ -80,12 +86,21 @@ int main()
 		BoidSystem->SimulateBoids(DeltaTime);
 
 		// Render
-		BoidSystem->RenderAdditionalData();
-		size_t NumBoids = BoidSystem->GetNumBoids();
-		for (size_t Index = 0; Index < NumBoids; ++Index)
 		{
-			const BoidData& Boid = BoidSystem->GetBoidData(Index);
-			DrawBoid(Boid.Center, Boid.Angle, { 0, 128, 0, 255 });
+			OPTICK_EVENT("Render Additional Data");
+
+			BoidSystem->RenderAdditionalData();
+		}
+
+		{
+			OPTICK_EVENT("Render Boids");
+
+			size_t NumBoids = BoidSystem->GetNumBoids();
+			for (size_t Index = 0; Index < NumBoids; ++Index)
+			{
+				const BoidData& Boid = BoidSystem->GetBoidData(Index);
+				DrawBoid(Boid.Center, Boid.Angle, { 0, 128, 0, 255 });
+			}
 		}
 
 		EndDrawing();

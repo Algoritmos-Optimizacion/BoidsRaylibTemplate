@@ -1,5 +1,6 @@
 
 #include "Boids.h"
+#include "optick.h"
 #include "time.h"
 #include <algorithm>
 #include <vector>
@@ -188,6 +189,8 @@ void BoidsSystemImplementation::RenderAdditionalData()
 
 void BoidsSystemImplementation::SimulateBoids(float DeltaTime)
 {
+	OPTICK_EVENT();
+
 	// Move Driver
 	DriverTime += (DeltaTime * DriverSpeed);
 	const float DriverSinTime = sinf(DriverTime * 2.f);
@@ -215,6 +218,8 @@ void BoidsSystemImplementation::SimulateBoids(float DeltaTime)
 
 void BoidsSystemImplementation::SimulateBoid(Boid& Boid, float DeltaTime)
 {
+	OPTICK_EVENT();
+
 	// Drag
 	Boid.Velocity *= (1.f - DragBoidSpeed * 0.1f);
 

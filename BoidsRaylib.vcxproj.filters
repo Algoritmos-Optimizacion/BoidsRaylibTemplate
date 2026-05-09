@@ -22,6 +22,9 @@
     <Filter Include="Source Files\Imgui">
       <UniqueIdentifier>{785a84ff-4648-44ed-9c57-8c2760510646}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Optick">
+      <UniqueIdentifier>{b18650a2-12c7-4ff0-a367-451345ec3df0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BoidsRaylib.cpp">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="imgui\imstb_truetype.h">
       <Filter>Source Files\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="optick\optick.h">
+      <Filter>Header Files\Optick</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
